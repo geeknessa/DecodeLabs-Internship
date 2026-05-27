@@ -1,0 +1,263 @@
+/* ==========================================
+   1. GLOBAL & BODY SETTINGS
+   ========================================== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fdfbf7;
+    /* Warm cream background */
+    color: #332211;
+    /* Deep chocolate brown text */
+    margin: 0;
+    padding: 1.5rem;
+
+    /* 💡 Fix: Gives absolute floating items a baseline boundary 
+       so they don't drift off into space */
+    position: relative;
+    overflow-x: hidden;
+    /* Prevents horizontal scrollbars if elements float wide */
+}
+html {
+    scroll-behavior: smooth;
+}
+.hero-pancake {
+    width: 180px;
+    margin-top: 1rem;
+
+    animation: float 4s ease-in-out infinite;
+
+    filter: drop-shadow(0 15px 20px rgba(0, 0, 0, .2));
+}
+
+/* ==========================================
+   2. HEADER & NAVIGATION (.syrup)
+   ========================================== */
+.site-header {
+    text-align: center;
+    padding-bottom: 1rem;
+}
+
+.syrup {
+    background: #c67b30;
+    /* Your cool maple syrup color */
+    border-radius: 0 0 50% 50%;
+    /* Your clever drip look! */
+    padding: 2rem 1rem;
+    color: white;
+
+    /* Makes header text white so it pops on the syrup background */
+}
+
+.syrup h1 {
+    font-family: 'Arial Black', Gadget, sans-serif;
+    /* Thick, bold font */
+    color: #ffffff;
+    text-shadow:
+        1px 1px 0px #b06218,
+        2px 2px 0px #964b0bc1,
+        3px 3px 0px #7c3a03,
+        4px 4px 5px rgba(0, 0, 0, 0.4);
+    /* Creates a thick 3D sticker effect */
+}
+
+/* 💡 Fix: Style the actual links inside your navigation menu */
+.website-head {
+    display: flex;
+    justify-content: center;
+    /* Centers navigation options */
+    gap: 2rem;
+    /* Tightened up slightly for better mobile fit */
+    
+    /* Pink background on mobile */
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+/* Target the actual text links inside the navigation bar */
+.website-head a {
+    color: white;
+    text-decoration: none;
+    /* Removes the ugly browser line under links */
+    font-weight: bold;
+    transition: 0.3s ease;
+}
+
+.website-head a:hover {
+    color: #332211;
+    /* Links switch color when you hover over them! */
+}
+
+/* ==========================================
+   3. FLOATING ANIMATED PANCAKES
+   ========================================== */
+.side-decor {
+    position: fixed;
+
+    top: 0;
+
+    height: 100vh;
+
+    width: 80px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-evenly;
+
+    align-items: center;
+
+    pointer-events: none;
+
+    z-index: -1;
+}
+
+.left {
+    left: 0;
+}
+
+.right {
+    right: 0;
+}
+
+.float {
+    font-size: 2rem;
+
+    opacity: 0.5;
+
+    animation: float 4s ease-in-out infinite;
+}
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* ==========================================
+   4. RECIPE CONTENT LAYOUT (Mobile Default)
+   ========================================== */
+.recipe-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.recipe-stats {
+    display: flex;
+    justify-content: space-around;
+    /* Distributes stats evenly across rows */
+    background-color: #f1ebd9;
+    /* Soft warm tint background box */
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+/* Styling your new section layout cards automatically */
+.ingredients-section,
+.measurements-section,
+.recipe-steps {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: 0.3s ease;
+}
+.ingredients-section:hover,
+.measurements-section:hover,
+.recipe-steps:hover {
+    transform: translateY(-5px);
+}
+/* Style your checklist items slightly to give them space */
+ul,
+ol {
+    padding-left: 1.2rem;
+}
+
+li {
+    margin-bottom: 0.5rem;
+    
+}
+.recipe-ingredients li {
+    list-style: none;
+    /* Removes the basic bullet point */
+    background: #fffbfa;
+    border: 2px solid #f0e6d2;
+    padding: 10px 15px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-block;
+    /* Makes them look like individual little badges */
+    margin-right: 5px;
+}
+
+/* A subtle hover effect when their mouse glides over an ingredient */
+.recipe-ingredients li:hover {
+    background-color: #ffe6cc;
+    /* Turns buttery orange */
+    transform: translateY(-2px);
+    /* Pops up slightly */
+    border-color: #c67b30;
+}
+.ingredient-card {
+    transition: 0.3s;
+}
+
+.ingredient-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .2);
+}
+/* ==========================================
+   5. DESKTOP STYLES (Activates at 768px wide)
+   ========================================== */
+@media (min-width: 768px) {
+
+    .recipe-container {
+        display: grid;
+        /* Splits into a 2-column setup: 
+           Left column holds ingredients, Right column holds instructions */
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        max-width: 1000px;
+        margin: 2rem auto;
+    }
+
+    .recipe-stats {
+        grid-column: span 2;
+        /* Let stats stretch full width over both columns */
+    }
+
+    .recipe-steps {
+        grid-column: span 2;
+        /* Let the steps take full width at the bottom */
+    }
+
+    /* Swaps the pink background to sandy gold on desktop */
+    .website-head {
+        background-color: #ebd6a7;
+    }
+}
+
+/*TABLET VIEW (768px and up) Kicks in for iPads and small tablets.===================================================*/ 
+@media (min-width: 768px) {
+    .recipe-container {
+        display: grid;
+        /* Split into 2 columns: Ingredients on left, Measurements on right */
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .recipe-steps {
+        grid-column: span 2;
+        /* Steps take up the full bottom row */
+    }
+}
